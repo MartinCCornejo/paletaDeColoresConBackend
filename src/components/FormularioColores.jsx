@@ -13,42 +13,60 @@ const FormularioColores = () => {
   },[arrayColores,color])
 
 
-  const isValidColor = (inputColor) => {
+// Funcion para verificar que el color sea valido 
+  const esColorValido = (colorInput) => {
     // Lista de nombres de colores en inglés
-    const validColors = [
+    const coloresValidos = [
       "black", "silver", "gray", "white", "maroon", "red", "purple", "fuchsia",
       "green", "lime", "olive", "yellow", "navy", "blue", "teal", "aqua",
       "orange", "aliceblue", "antiquewhite", "aquamarine", "azure", "beige",
-      "bisque", "blanchedalmond", "blueviolet", "brown", "burlywood", "cadetblue",
+      "bisque", "blanchedalmond", "blueviolet", "brown", "burlywood", "cadetblue", "cyan"
     ];
   
     // Verifica si el color ingresado está en la lista de colores válidos
-    const isValid = validColors.includes(inputColor.toLowerCase());
+    const esValido = coloresValidos.includes(colorInput.toLowerCase());
   
-    if (!isValid) {
+    if (!esValido) {
       Swal.fire({
         title: "Error",
-        text: "Por favor, ingrese un nombre de color válido en inglés.",
+        text: "Por favor, ingrese un nombre de color válido en español.",
         icon: "error",
       });
     }
   
-    return isValid;
+    return esValido;
   };
   
+// Funcion que verifica si un color es repetido 
+  const esColorRepetido = (inputColor) => {
+    for (let i = 0; i < arrayColores.length; i++) {
+       if (arrayColores.includes(color)) {
+        return true
+       }
+
+       return false
+    }
+  }
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!isValidColor(color)) {
+    if (!esColorValido(color)) {
         Swal.fire({
           title: "Error",
           text: "Por favor, ingrese un color válido.",
           icon: "error",
         });
         return;
-      }
+    } if (esColorRepetido(color)) {
+        Swal.fire({
+            title: "Error",
+            text: "Ya ingresaste este color!",
+            icon: "error",
+          });
+          return;
+    }
 
     setArrayColores([...arrayColores, color]);
 
