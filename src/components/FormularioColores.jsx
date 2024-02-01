@@ -5,7 +5,7 @@ const FormularioColores = () => {
     <Form className="my-5 border p-3 box-shadow">
       <Form.Group controlId="formularioTarea">
         <Form.Label className="fs-4">Administrar colores</Form.Label>
-        <Row className="justify-content-center align-items-center bg-gray py-4">
+        <Row className="justify-content-center align-items-center bg-gray py-4 gap-3">
           <Col md="3">
             <div className="box"></div>
           </Col>
