@@ -1,0 +1,27 @@
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.box{
+  width: 170px;
+  height: 170px;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.box-shadow{
+  box-shadow: 4px 4px 15px rgba(0,0,0,0.4);
+}
+
+.color-item{
+  width: 120px;
+  height: 120px;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.bg-gray{
+  background: #eee;
+}
