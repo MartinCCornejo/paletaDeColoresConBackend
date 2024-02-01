@@ -2,6 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
+import FormularioColores from "./components/FormularioColores";
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
           TP React <br></br> Ejercicio 6 - Paleta de colores
         </h1>
       </header>
-      <Container className="flex-grow-1"></Container>
+      <Container className="flex-grow-1">
+        <FormularioColores></FormularioColores>
+      </Container>
       <Footer></Footer>
     </>
   );
