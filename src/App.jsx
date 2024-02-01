@@ -4,7 +4,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import FormularioColores from "./components/FormularioColores";
-import ContenedorColores from "./components/ContenedorColores";
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
       </header>
       <Container className="flex-grow-1">
         <FormularioColores></FormularioColores>
-        <ContenedorColores></ContenedorColores>
       </Container>
       <Footer></Footer>
     </>

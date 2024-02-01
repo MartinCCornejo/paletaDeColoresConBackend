@@ -1,14 +1,15 @@
 import { Button, Col } from "react-bootstrap";
 
-const Color = () => {
+const Color = ({color,borrarColor}) => {
+
   return (
     <Col md="4" lg="3" className="box-shadow py-3">
       <div className="text-center">
-        <h3 className="fs-4">Nombre del color</h3>
+        <h3 className="fs-4 text-capitalize">{color}</h3>
         <div className="bg-gray py-3 my-2">
-            <div className="color"></div>
+            <div className="color-item" style={{backgroundColor: color}} ></div>
         </div>
-        <Button variant="danger">
+        <Button variant="danger" onClick={()=> borrarColor(color)}>
           <i className="bi bi-trash fs-5"></i>
         </Button>
       </div>
