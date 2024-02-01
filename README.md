@@ -7,7 +7,7 @@ Este proyecto de React tiene como objetivo mostrar un formulario con un input y 
 ## Instrucciones
 1. Clona este repositorio en tu máquina local utilizando el siguiente comando:
    ```bash
-   git clone [URL_DEL_REPOSITORIO]
+   git clone https://github.com/MartinCCornejo/tpReact-ejercicio6.git
 
 2. Navega al directorio del proyecto:
    ```bash
