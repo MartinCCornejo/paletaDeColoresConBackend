@@ -20,7 +20,7 @@ const FormularioColores = () => {
       "black", "silver", "gray", "white", "maroon", "red", "purple", "fuchsia",
       "green", "lime", "olive", "yellow", "navy", "blue", "teal", "aqua",
       "orange", "aliceblue", "antiquewhite", "aquamarine", "azure", "beige",
-      "bisque", "blanchedalmond", "blueviolet", "brown", "burlywood", "cadetblue", "cyan"
+      "bisque", "blanchedalmond", "blueviolet", "brown", "burlywood", "cadetblue", "cyan", "lightblue"
     ];
   
     // Verifica si el color ingresado está en la lista de colores válidos

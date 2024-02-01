@@ -9,7 +9,7 @@ const ContenedorColores = ({arrayColores,borrarColor}) => {
 
   return (
     <section>
-    <Row>
+    <Row className="gap-5 justify-content-center align-item-center">
         {
             arrayColores.map((elemento,posicion) => <Color borrarColor={borrarColor} key={posicion} color={elemento}></Color>)
         }
