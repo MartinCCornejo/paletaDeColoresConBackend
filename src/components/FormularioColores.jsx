@@ -12,11 +12,30 @@ const FormularioColores = () => {
     localStorage.setItem('coloresLocal',JSON.stringify(arrayColores));
   },[arrayColores,color])
 
+
   const isValidColor = (inputColor) => {
-    // Expresión regular para verificar el formato del color
-    const colorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^[a-zA-Z]+$/;
-    return colorRegex.test(inputColor);
+    // Lista de nombres de colores en inglés
+    const validColors = [
+      "black", "silver", "gray", "white", "maroon", "red", "purple", "fuchsia",
+      "green", "lime", "olive", "yellow", "navy", "blue", "teal", "aqua",
+      "orange", "aliceblue", "antiquewhite", "aquamarine", "azure", "beige",
+      "bisque", "blanchedalmond", "blueviolet", "brown", "burlywood", "cadetblue",
+    ];
+  
+    // Verifica si el color ingresado está en la lista de colores válidos
+    const isValid = validColors.includes(inputColor.toLowerCase());
+  
+    if (!isValid) {
+      Swal.fire({
+        title: "Error",
+        text: "Por favor, ingrese un nombre de color válido en inglés.",
+        icon: "error",
+      });
+    }
+  
+    return isValid;
   };
+  
   
 
   const handleSubmit = (e) => {
