@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import ContenedorColores from "./ContenedorColores";
 import { useForm } from "react-hook-form";
+import { crearColorAPI } from "../helpers/queries";
 
 const FormularioColores = () => {
   const {
@@ -13,11 +14,24 @@ const FormularioColores = () => {
     setValue,
   } = useForm();
 
+  const onSubmit = async (color) => {
+    // console.log(color.nombreColor);
+    const respuesta = await crearColorAPI(color);
+    if (respuesta.status === 201) {
+      Swal.fire({
+        title: "Bien hecho!",
+        text: "El color se agrego correctamente",
+        icon: "success",
+      });
 
-  const onSubmit = (color) => {
-    console.log(color);
-    console.log(color.codigoColor.length);
-  }
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: "El color no se pudo agregar. Intente de nuevo en unos minutos.",
+        icon: "error",
+      });
+    }
+  };
   // const [color, setColor] = useState("");
   // const coloresLocalStorage = JSON.parse(localStorage.getItem('coloresLocal')) || [];
   // const [arrayColores, setArrayColores] = useState(coloresLocalStorage);
@@ -112,7 +126,10 @@ const FormularioColores = () => {
 
   return (
     <section>
-      <Form className="my-5 border p-3 box-shadow" onSubmit={handleSubmit(onSubmit)}>
+      <Form
+        className="my-5 border p-3 box-shadow"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Form.Group controlId="formularioColor">
           <Form.Label className="fs-4">Administrar colores</Form.Label>
           <Row className="justify-content-center align-items-center bg-gray py-4 gap-3">
@@ -146,17 +163,17 @@ const FormularioColores = () => {
                   Ingrese el código del color (en hexadecimal)
                 </Form.Label>
                 <Form.Control
-                  type="number"
+                  type="text"
                   placeholder="Ej: FF0000"
                   {...register("codigoColor", {
                     required: "Este campo es obligatorio",
                     minLength: {
                       value: 3,
-                      message: "Debe ingresar como mínimo 3 caracteres"
+                      message: "Debe ingresar como mínimo 3 caracteres",
                     },
                     maxLength: {
                       value: 6,
-                      message: "Debe ingresar como máximo 6 caracteres"
+                      message: "Debe ingresar como máximo 6 caracteres",
                     },
                   })}
                 />
