@@ -1,6 +1,6 @@
 import { Button, Col } from "react-bootstrap";
 
-const Color = ({color}) => {
+const ItemColor = ({color}) => {
 
   return (
     <Col md="3" lg="2" className="box-shadow py-3">
@@ -17,4 +17,4 @@ const Color = ({color}) => {
   );
 };
 
-export default Color;
+export default ItemColor;

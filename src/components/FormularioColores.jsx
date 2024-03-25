@@ -1,4 +1,4 @@
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import ContenedorColores from "./ContenedorColores";
 import { useState, useEffect } from "react";
@@ -27,14 +27,15 @@ const FormularioColores = () => {
     if (respuesta.status === 201) {
       Swal.fire({
         title: "Bien hecho!",
-        text: "El color se agrego correctamente",
+        text: `El color '${color.nombreColor}' se agrego correctamente`,
         icon: "success",
       });
+      reset();
 
     } else {
       Swal.fire({
         title: "Error!",
-        text: "El color no se pudo agregar. Intente de nuevo en unos minutos.",
+        text: `El color '${color.nombreColor}' no se pudo agregar. Intente de nuevo en unos minutos.`,
         icon: "error",
       });
     }
@@ -153,12 +154,9 @@ const FormularioColores = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <Form.Group controlId="formularioColor">
-          <Form.Label className="fs-4">Administrar colores</Form.Label>
-          <Row className="justify-content-center align-items-center bg-gray py-4 gap-3">
-            <Col md="3">
-              <div className="box border border-5"></div>
-            </Col>
-            <Col md="7">
+          <Form.Label className="fs-4 mb-0">Administrar colores</Form.Label>
+          <hr />
+          <div className="py-2">
               <div className="mb-3">
                 <Form.Label>Ingrese el nombre del color</Form.Label>
                 <Form.Control
@@ -203,8 +201,7 @@ const FormularioColores = () => {
                   {errors.codigoColor?.message}
                 </Form.Text>
               </div>
-            </Col>
-          </Row>
+          </div>
           <div className="text-end">
             <Button variant="primary" type="submit" className="mt-3">
               Agregar
