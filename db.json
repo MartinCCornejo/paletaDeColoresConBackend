@@ -1,59 +1,14 @@
 {
   "colores": [
     {
-      "id": "5975",
-      "nombreColor": "sad",
-      "codigoColor": "saddas"
-    },
-    {
-      "id": "ce2c",
-      "nombreColor": "asdasd",
-      "codigoColor": "2323"
-    },
-    {
-      "id": "685c",
-      "nombreColor": "asdsad",
-      "codigoColor": "2ewe"
-    },
-    {
-      "id": "ab0c",
-      "nombreColor": "sadasd",
-      "codigoColor": "2323"
-    },
-    {
-      "id": "b2c4",
-      "nombreColor": "sadasd",
-      "codigoColor": "232323"
-    },
-    {
-      "id": "bfde",
-      "nombreColor": "red",
-      "codigoColor": "fff"
-    },
-    {
-      "id": "88b4",
-      "nombreColor": "red",
-      "codigoColor": "f00"
-    },
-    {
       "id": "24e8",
       "nombreColor": "red",
       "codigoColor": "f00"
     },
     {
-      "id": "a138",
-      "nombreColor": "sadsd",
-      "codigoColor": "asdsa"
-    },
-    {
       "id": "1f11",
       "nombreColor": "Azul",
       "codigoColor": "0000ff"
-    },
-    {
-      "id": "f947",
-      "nombreColor": "Verde",
-      "codigoColor": "0f0"
     }
   ]
 }
