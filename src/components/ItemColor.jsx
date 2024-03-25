@@ -1,8 +1,14 @@
-import { Button, Col } from "react-bootstrap";
+import { Button, Col,Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { borrarColorAPI } from "../helpers/queries";
+import { useState } from "react";
 
 const ItemColor = ({ color }) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const borrarColor = () => {
     Swal.fire({
       title: `Estas seguro de borrar el color '${color.nombreColor}'?`,
@@ -29,7 +35,6 @@ const ItemColor = ({ color }) => {
             icon: "error",
           });
         }
-        // Actualizamos el state arrayTareas
       }
     });
   };
@@ -44,13 +49,27 @@ const ItemColor = ({ color }) => {
             style={{ backgroundColor: `#${color.codigoColor}` }}
           ></div>
         </div>
-        <Button variant="warning" onClick={borrarColor}>
-          <i className="bi bi-pencil-square"></i>
+        <Button variant="warning" onClick={handleShow}>
+          <i className="bi bi-pencil-square" ></i>
         </Button>
         <Button variant="danger" onClick={borrarColor}>
           <i className="bi bi-trash fs-5"></i>
         </Button>
       </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Col>
   );
 };

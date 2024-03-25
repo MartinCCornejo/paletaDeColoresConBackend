@@ -43,8 +43,8 @@ export async function borrarColorAPI(id) {
     }
 }
 
-// Función para editar un colo 
-export async function modificarRecetaAPI (color,id) {
+// Función para editar un color
+export async function editarColorAPI (color,id) {
     try {
       const respuesta = await fetch(`${URI_COLOR}/${id}`, {
         method: "PUT",
@@ -53,7 +53,6 @@ export async function modificarRecetaAPI (color,id) {
         },
         body: JSON.stringify(color)
       });
-      console.log(respuesta)
       return respuesta;
 
     } catch (error) {
