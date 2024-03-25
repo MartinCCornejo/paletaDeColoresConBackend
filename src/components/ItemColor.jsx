@@ -6,7 +6,7 @@ const ItemColor = ({color}) => {
 
   const borrarColor = () => {
     Swal.fire({
-      title: "Estas seguro de borrar este color?",
+      title: `Estas seguro de borrar el color '${color.nombreColor}'?`,
       text: "Luego no podras revertir esta acción!",
       icon: "warning",
       showCancelButton: true,
@@ -14,14 +14,23 @@ const ItemColor = ({color}) => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, borrar",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then(async(result) => {
       if (result.isConfirmed) {
-        borrarColorAPI(color.id)
-        Swal.fire({
-          title: "Color eliminado!",
-          text: "El color se elimino correctamente.",
-          icon: "success",
-        });
+        const respuesta = await borrarColorAPI(color.id);
+        if (respuesta.status === 200) {
+          Swal.fire({
+            title: "Color eliminado!",
+            text: `El color '${color.nombreColor}' se elimino correctamente.`,
+            icon: "success",
+          });
+          
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: `El color '${color.nombreColor}' no se pudo eliminar. Intente de nuevo en unos minutos.`,
+            icon: "error",
+          });
+        }
         // Actualizamos el state arrayTareas
       }
     });
