@@ -1,0 +1,9 @@
+{
+    "colores":[
+        {
+            "id":123,
+            "nombreColor": "rojo",
+            "codigoColor": 334344
+        }
+    ]
+}
