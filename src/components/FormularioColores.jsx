@@ -2,8 +2,17 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { useState,useEffect } from "react";
 import Swal from "sweetalert2";
 import ContenedorColores from "./ContenedorColores";
+import { useForm } from "react-hook-form";
 
 const FormularioColores = () => {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue
+  } = useForm();
   // const [color, setColor] = useState("");
   // const coloresLocalStorage = JSON.parse(localStorage.getItem('coloresLocal')) || [];
   // const [arrayColores, setArrayColores] = useState(coloresLocalStorage);
@@ -122,7 +131,7 @@ const FormularioColores = () => {
               <div>
               <Form.Label>Ingrese el código del color (en hexadecimal)</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 placeholder="Ej: FF0000"
               />
               </div>
