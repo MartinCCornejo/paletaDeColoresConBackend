@@ -27,3 +27,16 @@ export async function listarColoresAPI () {
         console.log(error)
     }
 }
+
+// Función para eliminar una receta - DELETE 
+export async function borrarColorAPI(id) {
+    try {
+        const respuesta = await fetch(`${URI_COLOR}/${id}`, {
+            method: "DELETE"
+        });
+        return respuesta;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
