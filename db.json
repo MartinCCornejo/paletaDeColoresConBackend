@@ -1,9 +1,14 @@
 {
-    "colores":[
-        {
-            "id":123,
-            "nombreColor": "rojo",
-            "codigoColor": 334344
-        }
-    ]
+  "colores": [
+    {
+      "id": "123",
+      "nombreColor": "rojo",
+      "codigoColor": 334344
+    },
+    {
+      "id": "fd0e",
+      "nombreColor": "rojo",
+      "codigoColor": "ff0000"
+    }
+  ]
 }
