@@ -1,9 +1,9 @@
 import { Form, Button, Row, Col } from "react-bootstrap";
-import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import ContenedorColores from "./ContenedorColores";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { crearColorAPI } from "../helpers/queries";
+import { crearColorAPI, listarColoresAPI } from "../helpers/queries";
 
 const FormularioColores = () => {
   const {
@@ -13,6 +13,13 @@ const FormularioColores = () => {
     reset,
     setValue,
   } = useForm();
+
+  const [colores, setColores] = useState([]);
+
+  useEffect(() => {
+    listarColores();
+  }, [colores]);
+
 
   const onSubmit = async (color) => {
     // console.log(color.nombreColor);
@@ -28,6 +35,21 @@ const FormularioColores = () => {
       Swal.fire({
         title: "Error!",
         text: "El color no se pudo agregar. Intente de nuevo en unos minutos.",
+        icon: "error",
+      });
+    }
+  };
+
+  const listarColores = async () => {
+    const respuesta = await listarColoresAPI();
+    if (respuesta.status === 200) {
+      const datos = await respuesta.json();
+      setColores(datos);
+
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: "No se pudieron cargar los colores. Intente de nuevo en unos minutos",
         icon: "error",
       });
     }
@@ -190,7 +212,7 @@ const FormularioColores = () => {
           </div>
         </Form.Group>
       </Form>
-      <ContenedorColores></ContenedorColores>
+      <ContenedorColores colores={colores}></ContenedorColores>
     </section>
   );
 };

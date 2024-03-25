@@ -1,15 +1,15 @@
 import { Button, Col } from "react-bootstrap";
 
-const Color = ({color,borrarColor}) => {
+const ItemColor = () => {
 
   return (
     <Col md="3" lg="2" className="box-shadow py-3">
       <div className="text-center">
-        <h3 className="fs-4 text-capitalize">{color}</h3>
+        <h3 className="fs-4 text-capitalize"></h3>
         <div className="bg-gray py-3 my-2">
-            <div className="color-item" style={{backgroundColor: color}} ></div>
+            <div className="color-item"></div>
         </div>
-        <Button variant="danger" onClick={()=> borrarColor(color)}>
+        <Button variant="danger">
           <i className="bi bi-trash fs-5"></i>
         </Button>
       </div>
@@ -17,4 +17,4 @@ const Color = ({color,borrarColor}) => {
   );
 };
 
-export default Color;
+export default ItemColor;
