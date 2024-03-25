@@ -1,15 +1,59 @@
-import { Button, Col,Modal } from "react-bootstrap";
+import { Button, Col, Form, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
-import { borrarColorAPI } from "../helpers/queries";
-import { useState } from "react";
+import {
+  borrarColorAPI,
+  editarColorAPI,
+  obtenerColorAPI,
+} from "../helpers/queries";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const ItemColor = ({ color }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    cargarDatosColor(); // Cargar los datos del color al abrir el modal de edición
+    setShow(true);
+  };
 
-  const borrarColor = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm();
+
+  useEffect(() => {}, [color]);
+
+  const onSubmit = async (formData) => {
+    const respuesta = await editarColorAPI(formData, color.id);
+    if (respuesta.status === 200) {
+      Swal.fire({
+        title: "Color editado",
+        text: `El color se editó correctamente.`,
+        icon: "success",
+      });
+      handleClose();
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: `El color no se pudo editar correctamente. Intentelo de nuevo en unos minutos`,
+        icon: "error",
+      });
+    }
+  };
+
+  async function cargarDatosColor() {
+    const respuesta = await obtenerColorAPI(color.id);
+    if (respuesta.status === 200) {
+      const colorBuscado = await respuesta.json();
+      setValue("nombreColor", colorBuscado.nombreColor);
+      setValue("codigoColor", colorBuscado.codigoColor);
+    }
+  }
+
+  const borrarColor = async () => {
     Swal.fire({
       title: `Estas seguro de borrar el color '${color.nombreColor}'?`,
       text: "Luego no podras revertir esta acción!",
@@ -28,6 +72,7 @@ const ItemColor = ({ color }) => {
             text: `El color '${color.nombreColor}' se elimino correctamente.`,
             icon: "success",
           });
+          handleClose();
         } else {
           Swal.fire({
             title: "Error!",
@@ -49,26 +94,81 @@ const ItemColor = ({ color }) => {
             style={{ backgroundColor: `#${color.codigoColor}` }}
           ></div>
         </div>
-        <Button variant="warning" onClick={handleShow}>
-          <i className="bi bi-pencil-square" ></i>
-        </Button>
-        <Button variant="danger" onClick={borrarColor}>
-          <i className="bi bi-trash fs-5"></i>
-        </Button>
+        <div className="d-flex justify-content-center gap-2">
+          <Button variant="warning" onClick={handleShow}>
+            <i className="bi bi-pencil-square"></i>
+          </Button>
+          <Button variant="danger" onClick={borrarColor}>
+            <i className="bi bi-trash"></i>
+          </Button>
+        </div>
       </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Editar Color</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Modal.Body className="mx-2 my-0">
+          <Form className="border p-3" onSubmit={handleSubmit(onSubmit)}>
+            <Form.Group controlId="formularioColor">
+              <div className="py-2">
+                <div className="mb-3">
+                  <Form.Label>Nombre del color</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Ej: Rojo"
+                    {...register("nombreColor", {
+                      required: "Este campo es obligatorio",
+                      minLength: {
+                        value: 3,
+                        message: "Debe ingresar como mínimo 3 caracteres",
+                      },
+                      maxLength: {
+                        value: 20,
+                        message: "Debe ingresar como máximo 20 caracteres",
+                      },
+                    })}
+                  />
+                  <Form.Text className="text-danger">
+                    {errors.nombreColor?.message}
+                  </Form.Text>
+                </div>
+                <div>
+                  <Form.Label>Código del color (en hexadecimal)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Ej: FF0000"
+                    {...register("codigoColor", {
+                      required: "Este campo es obligatorio",
+                      minLength: {
+                        value: 3,
+                        message: "Debe ingresar como mínimo 3 caracteres",
+                      },
+                      maxLength: {
+                        value: 6,
+                        message: "Debe ingresar como máximo 6 caracteres",
+                      },
+                      pattern: {
+                        value:/^([0-9A-Fa-f]{3}){1,2}$/i,
+                        message: "Debe ingresar un código de color hexadecimal válido",
+                      }
+                    })}
+                  />
+                  <Form.Text className="text-danger">
+                    {errors.codigoColor?.message}
+                  </Form.Text>
+                </div>
+              </div>
+              <div className="d-flex gap-2 justify-content-end">
+                <Button variant="secondary" onClick={handleClose}>
+                  Cerrar
+                </Button>
+                <Button variant="primary" type="submit">
+                  Guardar cambios
+                </Button>
+              </div>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
       </Modal>
     </Col>
   );

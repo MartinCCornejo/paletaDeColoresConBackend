@@ -1,14 +1,19 @@
 {
   "colores": [
     {
-      "id": "24e8",
-      "nombreColor": "red",
-      "codigoColor": "f00"
+      "nombreColor": "Rojo",
+      "codigoColor": "red",
+      "id": "24e8"
     },
     {
-      "id": "1f11",
       "nombreColor": "Azul",
-      "codigoColor": "0000ff"
+      "codigoColor": "F0F8FF",
+      "id": "1f11"
+    },
+    {
+      "nombreColor": "verde",
+      "codigoColor": "00ff00",
+      "id": "577e"
     }
   ]
 }

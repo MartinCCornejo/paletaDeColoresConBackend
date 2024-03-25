@@ -59,3 +59,13 @@ export async function editarColorAPI (color,id) {
       console.log(error);
     }
 }
+
+export async function obtenerColorAPI(id) {
+    try {
+      const respuesta = await fetch(`${URI_COLOR}/${id}`);
+      return respuesta;
+
+    } catch (error) {
+      console.log(error);
+    }
+}
