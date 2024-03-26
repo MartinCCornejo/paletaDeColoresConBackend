@@ -1,3 +1,5 @@
+import ItemColor from "../components/ItemColor";
+
 const URI_COLOR = import.meta.env.VITE_API_COLOR;
 
 // Funcion para agregar un color 
@@ -28,7 +30,7 @@ export async function listarColoresAPI () {
     }
 }
 
-// Función para eliminar una receta - DELETE 
+// Función para eliminar un color 
 export async function borrarColorAPI(id) {
     try {
         const respuesta = await fetch(`${URI_COLOR}/${id}`, {
@@ -38,5 +40,32 @@ export async function borrarColorAPI(id) {
 
     } catch (error) {
         console.log(error);
+    }
+}
+
+// Función para editar un color
+export async function editarColorAPI (color,id) {
+    try {
+      const respuesta = await fetch(`${URI_COLOR}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(color)
+      });
+      return respuesta;
+
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+export async function obtenerColorAPI(id) {
+    try {
+      const respuesta = await fetch(`${URI_COLOR}/${id}`);
+      return respuesta;
+
+    } catch (error) {
+      console.log(error);
     }
 }

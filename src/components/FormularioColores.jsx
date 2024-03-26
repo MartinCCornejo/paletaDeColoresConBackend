@@ -3,7 +3,10 @@ import Swal from "sweetalert2";
 import ContenedorColores from "./ContenedorColores";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { crearColorAPI, listarColoresAPI } from "../helpers/queries";
+import {
+  crearColorAPI,
+  listarColoresAPI,
+} from "../helpers/queries";
 
 const FormularioColores = () => {
   const {
@@ -20,9 +23,7 @@ const FormularioColores = () => {
     listarColores();
   }, [colores]);
 
-
   const onSubmit = async (color) => {
-    // console.log(color.nombreColor);
     const respuesta = await crearColorAPI(color);
     if (respuesta.status === 201) {
       Swal.fire({
@@ -31,7 +32,6 @@ const FormularioColores = () => {
         icon: "success",
       });
       reset();
-
     } else {
       Swal.fire({
         title: "Error!",
@@ -46,7 +46,6 @@ const FormularioColores = () => {
     if (respuesta.status === 200) {
       const datos = await respuesta.json();
       setColores(datos);
-
     } else {
       Swal.fire({
         title: "Error!",
@@ -125,28 +124,6 @@ const FormularioColores = () => {
 
   // };
 
-  const borrarColor = () => {
-    // Swal.fire({
-    //   title: "Estas seguro de borrar este color?",
-    //   text: "Luego no podras revertir esta acción!",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Si, borrar",
-    //   cancelButtonText: "Cancelar",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     Swal.fire({
-    //       title: "Color eliminado!",
-    //       text: "El color se elimino correctamente.",
-    //       icon: "success",
-    //     });
-    //     // Actualizamos el state arrayTareas
-    //   }
-    // });
-  };
-
   return (
     <section>
       <Form
@@ -157,50 +134,50 @@ const FormularioColores = () => {
           <Form.Label className="fs-4 mb-0">Administrar colores</Form.Label>
           <hr />
           <div className="py-2">
-              <div className="mb-3">
-                <Form.Label>Ingrese el nombre del color</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Ej: Rojo"
-                  {...register("nombreColor", {
-                    required: "Este campo es obligatorio",
-                    minLength: {
-                      value: 3,
-                      message: "Debe ingresar como mínimo 3 caracteres",
-                    },
-                    maxLength: {
-                      value: 20,
-                      message: "Debe ingresar como máximo 20 caracteres",
-                    },
-                  })}
-                />
-                <Form.Text className="text-danger">
-                  {errors.nombreColor?.message}
-                </Form.Text>
-              </div>
-              <div>
-                <Form.Label>
-                  Ingrese el código del color (en hexadecimal)
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Ej: FF0000"
-                  {...register("codigoColor", {
-                    required: "Este campo es obligatorio",
-                    minLength: {
-                      value: 3,
-                      message: "Debe ingresar como mínimo 3 caracteres",
-                    },
-                    maxLength: {
-                      value: 6,
-                      message: "Debe ingresar como máximo 6 caracteres",
-                    },
-                  })}
-                />
-                <Form.Text className="text-danger">
-                  {errors.codigoColor?.message}
-                </Form.Text>
-              </div>
+            <div className="mb-3">
+              <Form.Label>Ingrese el nombre del color</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Ej: Rojo"
+                {...register("nombreColor", {
+                  required: "Este campo es obligatorio",
+                  minLength: {
+                    value: 3,
+                    message: "Debe ingresar como mínimo 3 caracteres",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "Debe ingresar como máximo 20 caracteres",
+                  },
+                })}
+              />
+              <Form.Text className="text-danger">
+                {errors.nombreColor?.message}
+              </Form.Text>
+            </div>
+            <div>
+              <Form.Label>
+                Ingrese el código del color (en hexadecimal)
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Ej: FF0000"
+                {...register("codigoColor", {
+                  required: "Este campo es obligatorio",
+                  minLength: {
+                    value: 3,
+                    message: "Debe ingresar como mínimo 3 caracteres",
+                  },
+                  maxLength: {
+                    value: 6,
+                    message: "Debe ingresar como máximo 6 caracteres",
+                  },
+                })}
+              />
+              <Form.Text className="text-danger">
+                {errors.codigoColor?.message}
+              </Form.Text>
+            </div>
           </div>
           <div className="text-end">
             <Button variant="primary" type="submit" className="mt-3">
