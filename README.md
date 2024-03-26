@@ -1,4 +1,4 @@
-# Ejercicio 6: Paleta de Colores
+# Paleta de Colores con Json-server
 
 ## Descripción
 Este proyecto de React tiene como objetivo mostrar un formulario con un input y un botón que permite guardar un color en el json-server, tambien puede editar un color, eliminarlo y obtenerlo por su id única.
