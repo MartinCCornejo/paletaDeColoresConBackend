@@ -10,7 +10,7 @@ function App() {
     <>
       <header className="bg-danger text-center text-light  py-3">
         <h1 className="display-5">
-          TP React <br></br> Ejercicio 6 - Paleta de colores
+          Paleta de colores
         </h1>
       </header>
       <Container className="flex-grow-1">

@@ -2,12 +2,12 @@
   "colores": [
     {
       "nombreColor": "Rojo",
-      "codigoColor": "red",
+      "codigoColor": "ff0000",
       "id": "24e8"
     },
     {
       "nombreColor": "Azul",
-      "codigoColor": "F0F8FF",
+      "codigoColor": "0000ff",
       "id": "1f11"
     },
     {
